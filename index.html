@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071b3a" />
+  <meta name="description" content="Discover Durham HOSA — a student-led community exploring healthcare, leadership, and competitive events." />
+  <title>Durham HOSA | Future Starts Here</title>
+  <style>
+    :root {
+      --navy: #071b3a;
+      --navy-2: #0c2b55;
+      --blue: #1768e5;
+      --sky: #66c7f4;
+      --ice: #eef7ff;
+      --white: #ffffff;
+      --ink: #10223d;
+      --muted: #62718a;
+      --line: #dce7f3;
+      --radius: 22px;
+      --shadow: 0 18px 55px rgba(7, 27, 58, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      text-transform: uppercase; letter-spacing: .14em; font-weight: 800;
+      font-size: .75rem; color: var(--blue);
+    }
+    .eyebrow::before { content: ""; width: 23px; height: 2px; background: currentColor; border-radius: 3px; }
+    .section { padding: 100px 0; }
+    .section-heading { max-width: 660px; margin-bottom: 42px; }
+    .section-heading h2 { font-size: clamp(2rem, 4vw, 3.15rem); line-height: 1.08; letter-spacing: -.045em; margin: 15px 0 16px; color: var(--navy); }
+    .section-heading p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 49px; padding: 0 21px; border-radius: 999px; font-weight: 750;
+      border: 1px solid transparent; transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--blue); color: white; box-shadow: 0 10px 24px rgba(23,104,229,.25); }
+    .btn-primary:hover { background: #0d57c9; box-shadow: 0 14px 30px rgba(23,104,229,.32); }
+    .btn-light { background: white; color: var(--navy); }
+    .btn-outline { border-color: rgba(255,255,255,.34); color: white; background: rgba(255,255,255,.06); }
+    .btn-outline:hover { background: rgba(255,255,255,.14); }
+    .arrow { font-size: 1.15em; line-height: 1; }
+
+    /* Navigation */
+    .site-header {
+      position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.91);
+      backdrop-filter: blur(16px); border-bottom: 1px solid rgba(220,231,243,.8);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: -.04em; color: var(--navy); }
+    .brand-mark { width: 58px; height: 48px; flex: 0 0 auto; display: block; object-fit: contain; border-radius: 5px; }
+    .brand-name { font-size: 1.1rem; line-height: 1.1; }
+    .brand-name small { display: block; margin-top: 4px; font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: #7b8ba2; }
+    .nav-links { display: flex; align-items: center; gap: 27px; }
+    .nav-links a:not(.btn) { color: #52627a; font-size: .91rem; font-weight: 700; transition: color .2s; }
+    .nav-links a:not(.btn):hover { color: var(--blue); }
+    .nav-links .btn { min-height: 43px; padding: 0 17px; font-size: .9rem; }
+    .menu-toggle { display: none; border: 0; background: transparent; color: var(--navy); font-size: 1.6rem; cursor: pointer; }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden; color: white;
+      background:
+        radial-gradient(ellipse at 78% 17%, rgba(102,199,244,.26), transparent 31%),
+        radial-gradient(ellipse at 5% 92%, rgba(23,104,229,.28), transparent 34%),
+        linear-gradient(125deg, #06152e 0%, #09254b 57%, #0b3769 100%);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.08); border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 660px; height: 660px; right: -110px; top: -280px; }
+    .hero::after { width: 480px; height: 480px; right: -20px; top: -190px; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 0; padding-top: 110px; padding-bottom: 118px; }
+    .hero .eyebrow { color: #8edcff; }
+    .hero h1 { max-width: 900px; margin: 19px 0 23px; font-size: clamp(3.2rem, 6.4vw, 5.8rem); line-height: .98; letter-spacing: -.07em; }
+    .hero h1 span { color: #80d8ff; }
+    .hero-copy { max-width: 760px; color: #c5d7ed; font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .hero-note { margin-top: 24px; color: #9fb6d2; font-size: .86rem; }
+    .hero-note strong { color: #fff; }
+    .hero-visual { min-height: 420px; position: relative; display: grid; place-items: center; }
+    .orb {
+      width: min(390px, 90%); aspect-ratio: 1; border-radius: 50%; position: relative;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 28%, #9be4ff 0, #4bb5f1 18%, #1768e5 48%, #0b2b59 74%);
+      box-shadow: inset -20px -24px 55px rgba(2,17,42,.45), 0 35px 90px rgba(0,0,0,.25);
+    }
+    .orb::before { content: ""; position: absolute; inset: -23px; border: 1px solid rgba(153,220,255,.26); border-radius: 50%; }
+    .orb::after { content: ""; position: absolute; inset: -49px; border: 1px solid rgba(153,220,255,.13); border-radius: 50%; }
+    .orb-cross { font-size: 9rem; font-weight: 200; line-height: 1; color: white; text-shadow: 0 8px 35px rgba(0,0,0,.2); }
+    .floating-card {
+      position: absolute; padding: 14px 17px; border-radius: 16px; color: var(--navy);
+      background: rgba(255,255,255,.96); box-shadow: 0 18px 50px rgba(0,0,0,.18);
+      display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: .9rem;
+    }
+    .floating-card small { display: block; color: #7b8ba2; font-size: .72rem; font-weight: 650; }
+    .floating-icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--ice); font-size: 1.25rem; }
+    .float-one { left: -4px; top: 53px; }
+    .float-two { right: -12px; bottom: 51px; }
+    .float-three { left: 10px; bottom: 5px; padding: 11px 14px; }
+
+    /* Status strip */
+    .status-wrap { margin-top: -27px; position: relative; z-index: 2; }
+    .status-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 27px; background: white; border-radius: 18px; box-shadow: var(--shadow); border: 1px solid #edf2f8; }
+    .status-main { display: flex; align-items: center; gap: 14px; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #f2a93b; box-shadow: 0 0 0 5px #fff4de; flex-shrink: 0; }
+    .status-main strong { display: block; color: var(--navy); }
+    .status-main span { color: var(--muted); font-size: .9rem; }
+    .status-card .btn { flex-shrink: 0; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 75px; align-items: center; }
+    .about-art {
+      min-height: 420px; border-radius: 30px; overflow: hidden; position: relative; padding: 35px;
+      display: flex; align-items: end; color: white;
+      background: radial-gradient(circle at 75% 22%, rgba(117,215,255,.62), transparent 24%),
+                  linear-gradient(145deg, #1b73e6, #0b2a56 75%);
+    }
+    .about-art::before { content: "+"; position: absolute; right: 36px; top: -57px; font-size: 21rem; line-height: 1; font-weight: 100; color: rgba(255,255,255,.11); }
+    .about-art::after { content: ""; position: absolute; width: 270px; height: 270px; border-radius: 50%; border: 1px solid rgba(255,255,255,.24); top: 36px; left: 34px; box-shadow: 0 0 0 25px rgba(255,255,255,.04), 0 0 0 50px rgba(255,255,255,.03); }
+    .art-caption { position: relative; z-index: 1; max-width: 300px; }
+    .art-caption .big { display: block; font-size: 3.7rem; line-height: 1; font-weight: 900; letter-spacing: -.06em; }
+    .art-caption p { color: #d9edff; margin: 12px 0 0; }
+    .about-copy h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; letter-spacing: -.05em; color: var(--navy); margin: 14px 0 20px; }
+    .about-copy > p { color: var(--muted); font-size: 1.04rem; }
+    .value-list { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; margin-top: 29px; }
+    .value { display: flex; gap: 12px; align-items: flex-start; }
+    .value-icon { width: 39px; height: 39px; border-radius: 12px; background: var(--ice); display: grid; place-items: center; flex-shrink: 0; }
+    .value strong { display: block; color: var(--navy); font-size: .96rem; }
+    .value span { color: var(--muted); font-size: .85rem; }
+
+    /* Pathways */
+    .pathways { background: #f5f9fe; }
+    .pathway-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
+    .pathway-card { background: white; border: 1px solid #e4edf7; padding: 29px; border-radius: var(--radius); transition: transform .2s, box-shadow .2s; }
+    .pathway-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .pathway-icon { width: 54px; height: 54px; display: grid; place-items: center; background: var(--ice); border-radius: 17px; font-size: 1.55rem; margin-bottom: 22px; }
+    .pathway-card h3 { color: var(--navy); font-size: 1.25rem; margin: 0 0 10px; letter-spacing: -.025em; }
+    .pathway-card p { color: var(--muted); font-size: .95rem; margin: 0; }
+
+    /* Events */
+    .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; }
+    .event-visual { position: relative; min-height: 400px; background: linear-gradient(140deg, #e7f5ff, #f6fbff); border-radius: 30px; overflow: hidden; display: grid; place-items: center; }
+    .event-visual .ring { width: 280px; height: 280px; border-radius: 50%; border: 2px solid rgba(23,104,229,.22); display: grid; place-items: center; box-shadow: 0 0 0 35px rgba(23,104,229,.045), 0 0 0 70px rgba(23,104,229,.03); }
+    .event-visual .ring-inner { width: 180px; height: 180px; border-radius: 50%; display: grid; place-items: center; color: white; font-size: 4rem; background: linear-gradient(145deg, #2b8bfa, #092b5b); box-shadow: 0 20px 45px rgba(23,104,229,.25); }
+    .event-tag { position: absolute; padding: 12px 16px; background: white; border: 1px solid #e2edf8; border-radius: 14px; box-shadow: 0 12px 30px rgba(7,27,58,.08); font-weight: 800; color: var(--navy); font-size: .88rem; }
+    .event-tag.one { top: 44px; left: 25px; }
+    .event-tag.two { top: 100px; right: 22px; }
+    .event-tag.three { bottom: 48px; left: 32px; }
+    .event-copy h2 { color: var(--navy); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.05em; margin: 15px 0 19px; }
+    .event-copy p { color: var(--muted); }
+    .event-points { list-style: none; padding: 0; margin: 25px 0 30px; display: grid; gap: 12px; }
+    .event-points li { display: flex; align-items: flex-start; gap: 11px; color: #354862; font-weight: 650; }
+    .check { width: 23px; height: 23px; border-radius: 50%; display: grid; place-items: center; background: #e3f6ed; color: #188553; flex-shrink: 0; font-size: .8rem; }
+
+    /* Team */
+    .team-section { background: var(--navy); color: white; overflow: hidden; position: relative; }
+    .team-section::before { content: ""; position: absolute; width: 500px; height: 500px; border-radius: 50%; border: 1px solid rgba(255,255,255,.07); right: -150px; top: -250px; box-shadow: 0 0 0 50px rgba(255,255,255,.018), 0 0 0 100px rgba(255,255,255,.018); }
+    .team-section .section-heading { position: relative; }
+    .team-section .section-heading h2 { color: white; }
+    .team-section .section-heading p { color: #b5c8df; }
+    .team-section .eyebrow { color: #8edcff; }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; }
+    .team-card { border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); border-radius: 23px; padding: 31px; }
+    .team-card .team-symbol { display: none; }
+    .team-card h3 { font-size: 1.35rem; margin: 0 0 9px; }
+    .team-card p { margin: 0; color: #b5c8df; }
+    .team-card .team-label { display: inline-block; margin-top: 23px; font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: #8edcff; font-weight: 850; }
+
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: start; }
+    .faq-grid .section-heading { margin-bottom: 0; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; border: 0; padding: 22px 0; background: transparent; display: flex; justify-content: space-between; align-items: center; text-align: left; gap: 20px; color: var(--navy); font-weight: 800; cursor: pointer; }
+    .faq-question span:last-child { font-size: 1.35rem; color: var(--blue); transition: transform .2s; }
+    .faq-answer { display: none; color: var(--muted); padding: 0 30px 22px 0; font-size: .96rem; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question span:last-child { transform: rotate(45deg); }
+
+    /* Contact CTA */
+    .contact-section { padding: 0 0 100px; }
+    .contact-card {
+      border-radius: 30px; padding: 58px; color: white; display: flex; align-items: center; justify-content: space-between; gap: 35px;
+      background: radial-gradient(ellipse at 90% 0%, rgba(102,199,244,.24), transparent 35%), linear-gradient(120deg, #0a2c58, #1768e5);
+      box-shadow: 0 25px 60px rgba(23,104,229,.18);
+    }
+    .contact-card h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; letter-spacing: -.05em; margin: 12px 0 13px; max-width: 600px; }
+    .contact-card p { margin: 0; color: #d3e5fb; max-width: 600px; }
+    .contact-card .eyebrow { color: #9ce2ff; }
+    .contact-actions { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+    footer { background: #06152e; color: #9fb3cc; padding: 31px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    footer .brand { color: white; }
+    footer .brand-name small { color: #9fb3cc; }
+    .footer-note { font-size: .82rem; text-align: right; }
+    .footer-links { display: flex; gap: 17px; margin-top: 6px; justify-content: flex-end; }
+    .footer-links a { color: #d5e3f4; font-size: .82rem; }
+    .footer-links a:hover { color: #8edcff; }
+
+
+    .brand-mark { width: 86px; height: 56px; flex: 0 0 auto; display: block; object-fit: contain; border-radius: 0; }
+    .brand-name { font-size: 1.08rem; }
+    .event-guidelines-panel {
+      background: linear-gradient(135deg, #eaf5ff 0%, #ffffff 100%);
+      padding: 32px; align-items: stretch; justify-items: stretch;
+    }
+    .guidelines-inner {
+      width: 100%; min-height: 315px; padding: 38px 32px; border: 1px solid #d2e7fb;
+      border-radius: 22px; background: white; display: flex; flex-direction: column; justify-content: center;
+      box-shadow: 0 20px 45px rgba(7,27,58,.07);
+    }
+    .guidelines-kicker { color: var(--blue); font-size: .73rem; font-weight: 850; letter-spacing: .15em; }
+    .guidelines-title { color: var(--navy); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -.06em; line-height: .98; margin: 22px 0; }
+    .guidelines-rule { width: 70px; height: 4px; border-radius: 4px; background: var(--blue); }
+    .guidelines-caption { color: var(--muted); margin-top: 18px; font-size: .98rem; }
+    .team-symbol { display: none; }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 15px; }
+      .nav-links a:not(.btn) { font-size: .84rem; }
+      .hero-grid { gap: 0; }
+
+      .about-grid, .events-grid { gap: 42px; }
+      .faq-grid { gap: 40px; }
+      .contact-card { padding: 42px; }
+    }
+    @media (max-width: 740px) {
+      .container { width: min(100% - 32px, 560px); }
+      .section { padding: 72px 0; }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 70px; left: 0; right: 0; padding: 19px 22px 24px;
+        background: white; border-bottom: 1px solid var(--line); box-shadow: 0 18px 25px rgba(7,27,58,.08);
+        align-items: stretch; flex-direction: column; gap: 17px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a:not(.btn) { font-size: .98rem; }
+      .nav-links .btn { width: 100%; }
+      .hero-grid { grid-template-columns: 1fr; padding-top: 69px; padding-bottom: 76px; gap: 18px; }
+      .hero h1 { font-size: clamp(3.25rem, 14vw, 5.1rem); }
+      .hero-grid { padding-top: 76px; padding-bottom: 82px; }
+      .status-card { align-items: flex-start; flex-direction: column; padding: 22px; gap: 17px; }
+      .status-card .btn { width: 100%; }
+      .about-grid, .events-grid, .faq-grid { grid-template-columns: 1fr; gap: 35px; }
+      .about-art { min-height: 330px; }
+      .value-list { gap: 18px 12px; }
+      .pathway-grid { grid-template-columns: 1fr; }
+      .pathway-card { padding: 25px; }
+      .event-visual { min-height: 320px; order: 2; }
+      .event-copy { order: 1; }
+      .event-visual .ring { width: 220px; height: 220px; }
+      .event-visual .ring-inner { width: 145px; height: 145px; font-size: 3.3rem; }
+      .event-tag { font-size: .77rem; padding: 10px 12px; }
+      .event-tag.one { top: 25px; left: 12px; }
+      .event-tag.two { top: 72px; right: 10px; }
+      .event-tag.three { bottom: 28px; left: 15px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { padding: 25px; }
+      .contact-section { padding-bottom: 72px; }
+      .contact-card { padding: 34px 25px; flex-direction: column; align-items: flex-start; }
+      .contact-actions { width: 100%; }
+      .contact-actions .btn { width: 100%; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-note { text-align: left; }
+      .footer-links { justify-content: flex-start; flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Durham HOSA home">
+        <img class="brand-mark" src="durham-hosa-logo.png" alt="Durham HOSA logo">
+        <span class="brand-name">DURHAM HOSA</span>
+      </a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#opportunities">Opportunities</a>
+        <a href="#events">Competitive Events</a>
+        <a href="#team">Our Structure</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#contact">Get in touch <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Durham HOSA · 2026–2027</span>
+          <h1>Explore healthcare.<br><span>Build your future.</span></h1>
+          <p class="hero-copy">A community for students who want to explore healthcare, build leadership skills, and challenge themselves to make a difference.</p>
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#about">Discover Durham HOSA <span class="arrow">↓</span></a>
+            <a class="btn btn-outline" href="#events">Explore opportunities <span class="arrow">↗</span></a>
+          </div>
+          <p class="hero-note"><strong>Applications for 2026–2027 are now closed.</strong><br>Follow along for announcements and future opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container status-wrap">
+      <div class="status-card">
+        <div class="status-main">
+          <span class="status-dot"></span>
+          <div><strong>2026–2027 applications are closed</strong><span>Thank you to everyone who applied and shared their interest in Durham HOSA.</span></div>
+        </div>
+        <a class="btn btn-primary" href="#contact">Stay connected <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-art">
+          <div class="art-caption">
+            <span class="big">Learn.<br>Lead.<br>Make an impact.</span>
+            <p>Helping students take their interest in healthcare to the next level.</p>
+          </div>
+        </div>
+        <div class="about-copy">
+          <span class="eyebrow">Who we are</span>
+          <h2>More than an interest in healthcare.</h2>
+          <p>Durham HOSA brings students together to explore the many paths within healthcare and develop skills that can help them in school, future studies, and beyond.</p>
+          <p>Whether you're curious about medicine, research, public health, or another healthcare profession, HOSA offers ways to learn, connect, and challenge yourself.</p>
+          <div class="value-list">
+            <div class="value"><span class="value-icon" aria-hidden="true">01</span><div><strong>Keep learning</strong><span>Explore healthcare topics and new ideas.</span></div></div>
+            <div class="value"><span class="value-icon" aria-hidden="true">02</span><div><strong>Find community</strong><span>Connect with students who share your interests.</span></div></div>
+            <div class="value"><span class="value-icon" aria-hidden="true">03</span><div><strong>Build skills</strong><span>Practice communication, teamwork, and problem-solving.</span></div></div>
+            <div class="value"><span class="value-icon" aria-hidden="true">04</span><div><strong>Grow as a leader</strong><span>Discover how you can make a positive impact.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pathways" id="opportunities">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Find your path</span>
+          <h2>Curiosity can take you places.</h2>
+          <p>There isn't just one way to explore healthcare. Find an area that excites you, then build on it.</p>
+        </div>
+        <div class="pathway-grid">
+          <article class="pathway-card">
+            <div class="pathway-icon" aria-hidden="true">01</div>
+            <h3>Explore healthcare</h3>
+            <p>Learn about different healthcare careers, current topics, and the people and ideas shaping the field.</p>
+          </article>
+          <article class="pathway-card">
+            <div class="pathway-icon" aria-hidden="true">02</div>
+            <h3>Challenge yourself</h3>
+            <p>Discover HOSA competitive events that let students apply knowledge, prepare, and test their skills.</p>
+          </article>
+          <article class="pathway-card">
+            <div class="pathway-icon" aria-hidden="true">03</div>
+            <h3>Connect and lead</h3>
+            <p>Develop teamwork, communication, and leadership skills alongside a community of motivated students.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="events">
+      <div class="container events-grid">
+        <div class="event-visual event-guidelines-panel" aria-hidden="true">
+          <div class="guidelines-inner">
+            <span class="guidelines-kicker">HOSA CANADA · 2026–2027</span>
+            <span class="guidelines-title">COMPETITIVE<br>EVENT GUIDELINES</span>
+            <span class="guidelines-rule"></span>
+            <span class="guidelines-caption">Explore your event. Prepare with purpose.</span>
+          </div>
+        </div>
+        <div class="event-copy">
+          <span class="eyebrow">HOSA competitive events</span>
+          <h2>Turn what you learn into what you can do.</h2>
+          <p>HOSA competitive events give students opportunities to explore healthcare-related subjects and demonstrate their knowledge and skills. Events vary, so students can find areas that fit their strengths and interests.</p>
+          <ul class="event-points">
+            <li><span class="check">✓</span> Explore a wide range of healthcare-related topics.</li>
+            <li><span class="check">✓</span> Build confidence through preparation and practice.</li>
+            <li><span class="check">✓</span> Collaborate with teammates in eligible team events.</li>
+          </ul>
+          <a class="btn btn-primary" href="https://hosacanada.org/home/2026-2027-event-guidelines/" target="_blank" rel="noopener noreferrer">Explore HOSA events <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section" id="team">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Experience that supports you</span>
+          <h2>Guided by competitors who know the journey.</h2>
+          <p>Durham HOSA is run by students who have demonstrated strong results in HOSA competition and understand what it takes to prepare, compete, and grow.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card">
+            
+            <h3>International Leadership Conference Qualifiers</h3>
+            <p>Our leadership includes students who have qualified for ILC, bringing firsthand experience with high-level competition and the preparation it takes to get there.</p>
+            <span class="team-label">Firsthand competitive experience</span>
+          </article>
+          <article class="team-card">
+            
+            <h3>Top 10 Spring Leadership Conference Placers</h3>
+            <p>Top 10 SLC placers help bring practical knowledge of event expectations, competition strategy, and the dedication required to perform well.</p>
+            <span class="team-label">Proven results &amp; mentorship</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div class="section-heading">
+          <span class="eyebrow">Good to know</span>
+          <h2>Questions? Start here.</h2>
+          <p>Some quick answers about Durham HOSA and getting involved.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Are applications still open?</span><span>＋</span></button>
+            <div class="faq-answer">Applications for the 2026–2027 school year are now closed. Keep an eye on our announcements for any future opportunities or updates.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>What is HOSA?</span><span>＋</span></button>
+            <div class="faq-answer">HOSA is an international student organization focused on developing future health professionals through education, leadership, and healthcare-related competitive events.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Do I need to know which healthcare career I want?</span><span>＋</span></button>
+            <div class="faq-answer">You don't need to have your future figured out. An interest in learning about healthcare and a willingness to participate are great places to start.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>How can I contact Durham HOSA?</span><span>＋</span></button>
+            <div class="faq-answer">Email the Durham HOSA team at durhamhosa@gmail.com. We welcome questions about the club and future opportunities.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Where can I learn more about HOSA?</span><span>＋</span></button>
+            <div class="faq-answer">Visit the official HOSA website to learn more about the organization and its programs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div>
+            <span class="eyebrow">Let's connect</span>
+            <h2>Your healthcare journey doesn't stop here.</h2>
+            <p>Have a question or want to keep up with Durham HOSA? Reach out by email and stay tuned for future announcements.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-light" href="mailto:durhamhosa@gmail.com">Email Durham HOSA <span class="arrow">↗</span></a>
+            <a class="btn btn-outline" href="https://www.instagram.com/durhamhosa/" target="_blank" rel="noopener noreferrer">Follow us on Instagram <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home">
+        <img class="brand-mark" src="durham-hosa-logo.png" alt="Durham HOSA logo">
+        <span class="brand-name">DURHAM HOSA</span>
+      </a>
+      <div class="footer-note">
+        <div>© <span id="year"></span> Durham HOSA · 2026–2027</div>
+        <div class="footer-links">
+          <a href="#about">About</a><a href="#events">Events</a><a href="#faq">FAQ</a>
+          <a href="https://www.instagram.com/durhamhosa/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="mailto:durhamhosa@gmail.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      menuToggle.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        menuToggle.textContent = '☰';
+      });
+    });
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const isOpen = item.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
